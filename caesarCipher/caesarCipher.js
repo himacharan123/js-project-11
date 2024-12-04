@@ -1,21 +1,25 @@
-export function caesarCipher(str, shift) {
-    shift = shift % 26;
-    return str.split('').map(char => {
-        if (/[a-z]/.test(char)) {
-            let code = char.charCodeAt(0);
-            return String.fromCharCode(((code - 97 + shift + 26) % 26) + 97);
-        } else if (/[A-Z]/.test(char)) {
-            let code = char.charCodeAt(0);
-            return String.fromCharCode(((code - 65 + shift + 26) % 26) + 65);
-        } else {
-            return char;
-        }
-    }).join('');
-}
+export function caesarCipher(message, key) {
+  key = ((key % 26) + 26) % 26;
+  const CodeA = "A".charCodeAt(0);
+  const CodeZ = "Z".charCodeAt(0);
+  const Codea = "a".charCodeAt(0);
+  const Codez = "z".charCodeAt(0);
 
-// const plainText = "Hello, World!";
-// const shift = 3;
-// const encryptedText = caesarCipher(plainText, shift);
-// console.log("Encrypted:", encryptedText);
-// const decryptedText = caesarCipher(encryptedText, -shift);
-// console.log("Decrypted:", decryptedText);
+  let encryptedMessage = "";
+
+  for (let char of message) {
+    let currentLetter = char.charCodeAt(0);
+
+    if (currentLetter >= CodeA && currentLetter <= CodeZ) {
+      let newLetter = ((currentLetter - CodeA + key) % 26) + CodeA;
+      encryptedMessage += String.fromCharCode(newLetter);
+    } else if (currentLetter >= Codea && currentLetter <= Codez) {
+      let newLetter = ((currentLetter - Codea + key) % 26) + Codea;
+      encryptedMessage += String.fromCharCode(newLetter);
+    } else {
+      encryptedMessage += char;
+    }
+  }
+
+  return encryptedMessage;
+}
