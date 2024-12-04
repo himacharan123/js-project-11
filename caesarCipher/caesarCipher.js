@@ -1,4 +1,4 @@
-function caesarCipher(str, shift) {
+export function caesarCipher(str, shift) {
     shift = shift % 26;
     return str.split('').map(char => {
         if (/[a-z]/.test(char)) {
@@ -13,9 +13,9 @@ function caesarCipher(str, shift) {
     }).join('');
 }
 
-const plainText = "Hello, World!";
-const shift = 3;
-const encryptedText = caesarCipher(plainText, shift);
-console.log("Encrypted:", encryptedText);
-const decryptedText = caesarCipher(encryptedText, -shift);
-console.log("Decrypted:", decryptedText);
+// const plainText = "Hello, World!";
+// const shift = 3;
+// const encryptedText = caesarCipher(plainText, shift);
+// console.log("Encrypted:", encryptedText);
+// const decryptedText = caesarCipher(encryptedText, -shift);
+// console.log("Decrypted:", decryptedText);
